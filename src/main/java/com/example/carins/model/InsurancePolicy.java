@@ -1,6 +1,8 @@
 package com.example.carins.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 
 @Entity
@@ -14,14 +16,17 @@ public class InsurancePolicy {
 
     private String provider;
     private LocalDate startDate;
-    private LocalDate endDate; // nullable == open-ended
-
+    @NotNull
+    private LocalDate endDate;
     public InsurancePolicy() {}
     public InsurancePolicy(Car car, String provider, LocalDate startDate, LocalDate endDate) {
         this.car = car; this.provider = provider; this.startDate = startDate; this.endDate = endDate;
     }
 
-    public Long getId() { return id; }
+    public Long getId()
+    {
+        return id;
+    }
     public Car getCar() { return car; }
     public void setCar(Car car) { this.car = car; }
     public String getProvider() { return provider; }
